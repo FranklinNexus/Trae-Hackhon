@@ -24,38 +24,6 @@ function App() {
       {/* Background decorative elements */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-zinc-950/50 pointer-events-none"></div>
-      
-      {/* Cyber Character Decoration (Bottom Left) */}
-      <img 
-        src="/cyber-char.png" 
-        alt="Cyber Character" 
-        className="fixed bottom-0 left-0 w-64 z-0 pointer-events-none opacity-90 bg-dino" 
-        style={{ imageRendering: 'pixelated' }}
-      />
-
-      {/* Trae Logo Decoration (Top Right) */}
-      <img 
-        src="/trae-color.png" 
-        alt="Trae Logo" 
-        className="fixed top-6 right-6 w-32 z-0 pointer-events-none opacity-80 bg-cloud" 
-      />
-
-      {/* Dino Decoration (Top Left) */}
-      <img 
-        src="/dino.png" 
-        alt="Retro Dino" 
-        className="fixed top-24 left-10 w-24 z-0 pointer-events-none opacity-60 bg-dino" 
-        style={{ imageRendering: 'pixelated' }}
-      />
-
-      {/* Mario Decoration (Bottom Right, near tools) */}
-      <img 
-        src="/mario.png" 
-        alt="Pixel Mario" 
-        className="fixed bottom-10 right-48 w-16 z-0 pointer-events-none bg-dino" 
-        style={{ imageRendering: 'pixelated' }}
-      />
-      
       <BackgroundLayer />
 
       {/* Header */}

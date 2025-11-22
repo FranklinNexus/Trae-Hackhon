@@ -47,14 +47,6 @@ function App() {
         className="fixed top-24 left-10 w-24 z-0 pointer-events-none opacity-60 bg-dino" 
         style={{ imageRendering: 'pixelated' }}
       />
-
-      {/* Mario Decoration (Bottom Right, near tools) */}
-      <img 
-        src="/mario.png" 
-        alt="Pixel Mario" 
-        className="fixed bottom-10 right-48 w-16 z-0 pointer-events-none bg-dino" 
-        style={{ imageRendering: 'pixelated' }}
-      />
       
       <BackgroundLayer />
 

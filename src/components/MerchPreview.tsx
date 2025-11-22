@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import html2canvas from 'html2canvas';
-import { X, ShoppingBag, Loader2 } from 'lucide-react';
+import { ShoppingBag, Loader2 } from 'lucide-react';
+import { ActionButtons } from './ActionButtons';
 
 export function MerchPreview() {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,98 +33,105 @@ export function MerchPreview() {
 
   if (!isOpen) {
     return (
-      <button
-        onClick={handleGenerate}
-        disabled={loading}
-        className="fixed top-6 right-6 bg-zinc-900 border border-zinc-700 hover:border-indigo-500 text-white px-6 py-3 rounded-none font-mono text-sm shadow-lg hover:shadow-indigo-500/20 transition-all flex items-center gap-2 z-50 group"
-      >
-        {loading ? <Loader2 className="animate-spin w-4 h-4" /> : <ShoppingBag className="w-4 h-4 group-hover:text-indigo-400" />}
-        <span className="tracking-widest">MINT ARTIFACT</span>
-      </button>
+      <div className="fixed top-6 right-6 z-50 flex items-center gap-3">
+        {/* Secondary Action Buttons */}
+        <ActionButtons />
+
+        {/* Primary CTA */}
+        <button
+          onClick={handleGenerate}
+          disabled={loading}
+          className="neon-cta flex items-center gap-3"
+        >
+          {loading ? <Loader2 className="animate-spin w-4 h-4" /> : <ShoppingBag className="w-4 h-4" />}
+          <span>{loading ? 'Rendering' : 'Mint Artifact'}</span>
+        </button>
+      </div>
     );
   }
 
   return (
-    <div className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200">
-      <div className="bg-zinc-950 border border-zinc-800 p-8 max-w-lg w-full relative flex flex-col items-center shadow-2xl">
-        <button 
-          onClick={() => setIsOpen(false)}
-          className="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors"
-        >
-          <X size={24} />
-        </button>
+    <div
+      className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-[10px] flex items-center justify-center p-4"
+      onClick={() => setIsOpen(false)}
+    >
+      <div
+        className="bg-[#05060f]/95 border border-white/10 rounded-[32px] p-8 max-w-2xl w-full text-white shadow-[0_40px_120px_rgba(2,6,23,0.95)]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex flex-col gap-2">
+          <p className="text-[11px] uppercase tracking-[0.8em] text-emerald-400">
+            Drop 2025 · Trae Place Lab
+          </p>
+          <h2 className="text-3xl font-black tracking-tight">
+            Limited Edition Trae Artifact #2025
+          </h2>
+          <p className="text-zinc-400 text-sm">
+            Microfiber lens cloth / hand-stitched holographic edge
+          </p>
+        </div>
 
-        <h2 className="text-2xl font-bold mb-2 text-white font-mono tracking-tighter">ARTIFACT PREVIEW</h2>
-        <p className="text-zinc-500 mb-10 text-center text-xs font-mono uppercase tracking-widest">
-          Trae Place Official Commemorative Patch
-        </p>
+        <div className="mt-6 flex flex-wrap gap-6 justify-between text-sm font-mono text-zinc-400">
+          <div>
+            <p className="uppercase tracking-[0.6em] text-[10px] text-zinc-500">
+              Price
+            </p>
+            <p className="text-2xl font-bold text-emerald-300">$19.99 USD</p>
+          </div>
+          <div>
+            <p className="uppercase tracking-[0.6em] text-[10px] text-zinc-500">
+              Edition
+            </p>
+            <p className="text-xl font-semibold text-white">Genesis Batch</p>
+          </div>
+          <div>
+            <p className="uppercase tracking-[0.6em] text-[10px] text-zinc-500">
+              Lead Time
+            </p>
+            <p className="text-xl font-semibold text-white">2 Weeks</p>
+          </div>
+        </div>
 
-        {/* The Patch Visualization */}
-        <div className="relative group perspective-1000 mb-10">
-          <div 
-            className="relative transition-transform duration-500 ease-out group-hover:rotate-0 group-hover:scale-105"
-            style={{
-              transform: 'rotate(-2deg) rotateX(10deg)',
-              transformStyle: 'preserve-3d',
-            }}
-          >
-            {/* Shadow / Depth */}
-            <div className="absolute inset-0 bg-indigo-500/20 blur-2xl transform translate-y-4 translate-x-4 -z-10" />
-            
-            {/* The Patch itself */}
+        <div className="mt-10 cloth-scene">
+          <div className="cloth-mockup">
             {previewImage && (
-              <div 
-                className="relative overflow-hidden"
-                style={{
-                  width: '280px',
-                  height: '280px',
-                  // Embroidered Edge Effect
-                  border: '4px solid #222',
-                  boxShadow: `
-                    0 0 0 2px #4f46e5, 
-                    0 0 0 4px #111,
-                    0 10px 30px rgba(0,0,0,0.8)
-                  `,
-                  borderRadius: '4px',
-                }}
-              >
-                {/* The Art */}
-                <img 
-                  src={previewImage} 
-                  alt="Pixel Art" 
-                  className="w-full h-full object-cover"
-                  style={{ imageRendering: 'pixelated' }}
-                />
-                
-                {/* Thread Texture Overlay */}
-                <div 
-                  className="absolute inset-0 pointer-events-none opacity-30 mix-blend-overlay"
-                  style={{
-                    backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 2px, #000 3px, transparent 4px)`,
-                    backgroundSize: '4px 4px'
-                  }}
-                />
-                
-                {/* Glossy Sheen */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/30 pointer-events-none" />
-              </div>
+              <>
+                <img src={previewImage} alt="Pixel Art" />
+                <div className="cloth-glare" />
+                <div className="absolute top-4 left-4 bg-black/70 text-emerald-200 text-xs font-mono tracking-[0.5em] px-3 py-1 rounded-full border border-white/20">
+                  TRAE
+                </div>
+                <div className="absolute bottom-4 right-4 text-right text-white/80 font-mono text-xs">
+                  <p className="uppercase tracking-[0.6em] text-[9px] text-zinc-300">
+                    Artifact
+                  </p>
+                  <p className="text-lg font-bold">#2025</p>
+                </div>
+              </>
             )}
           </div>
         </div>
 
-        <div className="bg-zinc-900 p-4 border border-zinc-800 w-full flex justify-between items-center">
-           <div className="flex flex-col">
-             <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-mono">Batch</span>
-             <span className="text-indigo-400 font-bold font-mono">GENESIS-01</span>
-           </div>
-           <div className="text-right">
-             <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-mono">Price</span>
-             <span className="text-white font-bold font-mono">0.00 ETH</span>
-           </div>
+        <div className="mt-10 grid grid-cols-2 gap-4 text-xs uppercase tracking-[0.4em] text-zinc-500">
+          <div className="glass-panel px-4 py-3 rounded-2xl border border-white/10">
+            <p>Weave Density</p>
+            <p className="text-base text-white tracking-normal font-semibold mt-2">
+              400 GSM
+            </p>
+          </div>
+          <div className="glass-panel px-4 py-3 rounded-2xl border border-white/10">
+            <p>Color Fidelity</p>
+            <p className="text-base text-white tracking-normal font-semibold mt-2">
+              98% sRGB
+            </p>
+          </div>
         </div>
-        
-        <button className="mt-4 w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 text-sm font-mono tracking-widest uppercase transition-colors">
-          Confirm Mint
+
+        <button
+          onClick={() => setIsOpen(false)}
+          className="glow-button w-full mt-8 flex items-center justify-center gap-3 text-xs"
+        >
+          Pre-Order Now
         </button>
       </div>
     </div>

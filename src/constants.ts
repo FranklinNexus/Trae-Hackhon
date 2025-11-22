@@ -1,4 +1,4 @@
-export const GRID_SIZE = 32;
+export const GRID_SIZE = 48;
 
 export const COLORS = [
   '#FF4500', // Bright Red
@@ -21,5 +21,3 @@ export const COLORS = [
 
 export const DEFAULT_COLOR = '#FFFFFF';
 export const STORAGE_KEY = 'pixel-art-grid-v1';
-
-

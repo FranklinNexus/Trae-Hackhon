@@ -39,22 +39,6 @@ function App() {
         alt="Trae Logo" 
         className="fixed top-6 right-6 w-32 z-0 pointer-events-none opacity-80 bg-cloud" 
       />
-
-      {/* Dino Decoration (Top Left) */}
-      <img 
-        src="/dino.png" 
-        alt="Retro Dino" 
-        className="fixed top-24 left-10 w-24 z-0 pointer-events-none opacity-60 bg-dino" 
-        style={{ imageRendering: 'pixelated' }}
-      />
-
-      {/* Mario Decoration (Bottom Right, near tools) */}
-      <img 
-        src="/mario.png" 
-        alt="Pixel Mario" 
-        className="fixed bottom-10 right-48 w-16 z-0 pointer-events-none bg-dino" 
-        style={{ imageRendering: 'pixelated' }}
-      />
       
       <BackgroundLayer />
 
